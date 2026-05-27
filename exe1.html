@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto</title>
+    <script>
+        window.onload = inicio;
+
+        function inicio() {
+            let botao = document.getElementById('botao');
+            botao.addEventListener('click', cadastrar);
+        }
+
+        function cadastrar() {
+            let placa = document.getElementById("placa");
+            let marca = document.getElementById("marca");
+            let modelo = document.getElementById("modelo");
+            let data = new Date();
+            console.log(data.getHours());
+            console.log(data.getMinutes());
+
+            let carro = {
+                placa: placa.value,
+                marca: marca.value,
+                modelo: modelo.value,
+                data: data.getHours() + ":" + data.getMinutes(),
+            }
+            console.log(carro);
+            let saida = document.getElementById('saida');
+            saida.innerHTML += `<tr><td>placa: ${carro.placa}</td> <td>marca: ${carro.marca}</td> <td>modelo: ${carro.modelo}</td> <td>horário de entrada: ${carro.data}</td></tr>`;
+        }
+    </script>
+</head>
+
+<body>
+    <label for="">Placa do carro:</label>
+    <input type="text" id="placa">
+    <br>
+    <label for="">Marca:</label>
+    <input type="text" id="marca">
+    <br>
+    <label for="">Modelo:</label>
+    <input type="date" id="modelo">
+    <br>
+    <button id="botao">Cadastrar</button>
+    <table id="saida">
+    </table>
+</body>
+
+</html>
