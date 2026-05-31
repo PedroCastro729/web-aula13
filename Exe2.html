@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 2</title>
+</head>
+
+<script>
+    let convidados = new Set();
+
+    function cadastrar() {
+        let nome = document.getElementById("nome").value;
+        let sexo = document.getElementById("sexo").value;
+        let email = document.getElementById("email").value;
+
+        let convidado = {
+            nome: nome,
+            sexo: sexo,
+            email: email
+        };
+
+        convidados.add(convidado);
+
+        let tabela = document.getElementById("tabela");
+
+        tabela.innerHTML = `
+            <tr>
+                <th>Nome</th>
+                <th>Sexo</th>
+                <th>Email</th>
+            </tr>
+        `;
+
+        for (let item of convidados) {
+            tabela.innerHTML += `
+                <tr>
+                    <td>${item.nome}</td>
+                    <td>${item.sexo}</td>
+                    <td>${item.email}</td>
+                </tr>
+            `;
+        }
+    }
+</script>
+
+<body>
+
+    <h1>Cadastro de Convidados</h1>
+
+    <input type="text" id="nome" placeholder="Nome">
+    <br><br>
+
+    <input type="text" id="sexo" placeholder="Sexo">
+    <br><br>
+
+    <input type="email" id="email" placeholder="Email">
+    <br><br>
+
+    <button onclick="cadastrar()">
+        Cadastrar
+    </button>
+
+    <br><br>
+
+    <table border="1" id="tabela">
+        <tr>
+            <th>Nome</th>
+            <th>Sexo</th>
+            <th>Email</th>
+        </tr>
+    </table>
+
+</body>
+</html>
