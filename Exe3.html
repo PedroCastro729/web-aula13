@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercício 3</title>
+</head>
+
+<script>
+    let produtos = new Map();
+
+    produtos.set(1, {
+        nome: "Arroz",
+        status: "Pendente"
+    });
+
+    produtos.set(2, {
+        nome: "Feijão",
+        status: "Pendente"
+    });
+
+    produtos.set(3, {
+        nome: "Macarrão",
+        status: "Pendente"
+    });
+
+    function mostrarProdutos() {
+        let tabela = document.getElementById("tabela");
+
+        tabela.innerHTML = `
+            <tr>
+                <th>Código</th>
+                <th>Produto</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        `;
+
+        for (let [codigo, produto] of produtos) {
+            tabela.innerHTML += `
+                <tr>
+                    <td>${codigo}</td>
+                    <td>${produto.nome}</td>
+                    <td>${produto.status}</td>
+                    <td>
+                        <button onclick="aprovarLote(${codigo})">
+                            Aprovar
+                        </button>
+
+                        <button onclick="reprovarLote(${codigo})">
+                            Reprovar
+                        </button>
+                    </td>
+                </tr>
+            `;
+        }
+    }
+
+    function aprovarLote(codigo) {
+        produtos.get(codigo).status = "Aprovado";
+        mostrarProdutos();
+    }
+
+    function reprovarLote(codigo) {
+        produtos.delete(codigo);
+        mostrarProdutos();
+    }
+</script>
+
+<body onload="mostrarProdutos()">
+
+    <h1>Controle de Produtos</h1>
+
+    <table border="1" id="tabela"></table>
+
+</body>
+</html>
